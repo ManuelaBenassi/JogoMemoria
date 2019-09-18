@@ -1,0 +1,222 @@
+<html>
+    <head>
+        <title>Jogo da memória</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        
+        <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <style>
+            .carta,.verso{
+                width: 200px;
+                display: inline-block;
+                 height: 200px;
+                 border-radius: 10px;
+  
+                }
+                h1,h4{
+                    text-align: center;
+                    font-family: 'Oswald', sans-serif;
+                    
+                }
+          body{
+              background: rgb(255, 94, 0);
+          }
+            </style>
+   <h1>JOGO DA MEMÓRIA- ÁLBUNS INDIE</h1>
+        
+      
+       <div id="1" class="carta" style="margin-left: 10%">
+       
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+            
+        </div>
+        <div id="2" class="carta">
+            
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+                 
+        </div>
+        <div id="3" class="carta">
+                
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+                     
+        </div>
+        <div id="4" class="carta">
+                    
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+                         
+        </div>
+        <div id="13" class="carta">
+            
+    <img class="verso" src="capa.jpg" alt="verso da carta">
+                 
+</div>
+<div id="14" class="carta">
+    
+<img class="verso" src="capa.jpg" alt="verso da carta">
+         
+</div>
+        <br>
+        <div id="5"class="carta" style="margin-left: 10%">
+            
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                 
+             </div>
+             <div id="6" class="carta">
+                 
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                      
+             </div>
+             <div id="7" class="carta">
+                     
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                          
+             </div>
+             <div id="8" class="carta">
+                         
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                              
+             </div>
+             <div id="15" class="carta">
+                
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+                     
+            </div>
+            <div id="16" class="carta">
+                
+            <img class="verso" src="capa.jpg" alt="verso da carta">
+                     
+            </div>
+             <br>
+        <div id="9" class="carta" style="margin-left: 10%">
+            
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                 
+             </div>
+             <div id="10" class="carta">
+                 
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                      
+             </div>
+             <div id="11" class="carta">
+                     
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                          
+             </div>
+             <div id="12" class="carta">
+                         
+                 <img class="verso" src="capa.jpg" alt="verso da carta">
+                              
+             </div>
+             <div id="17" class="carta">
+                
+        <img class="verso" src="capa.jpg" alt="verso da carta">
+                     
+    </div>
+    <div id="18" class="carta">
+        
+<img class="verso" src="capa.jpg" alt="verso da carta">
+             
+</div>
+<h4>Como jogar?</h4><br>
+<h4>Recarregue a página para embaralhar as cartas. Clique em 2 cartas. Espere as cartas </h4>
+<h4> voltarem ao seu verso se estiverem erradas,pois se você clicar, o jogo "buga"</h4><br>
+<h4>Agradecimentos especiais: monitores do depto. de processamento de dados- COTUCA</h4>
+<h4>Manuela Vicente Benassi, 2019</h4>
+        
+        <script>
+            var vetorImagem = new Array();
+            vetorImagem[0] = "1.jpg"
+            vetorImagem[1] ="2.jpg"
+            vetorImagem[2] = "3.jpg"
+            vetorImagem[3] = "4.jpg"
+            vetorImagem[4] = "5.jpg"
+            vetorImagem[5] = "6.jpg"
+            vetorImagem[6] = "7.jpg"
+            vetorImagem[7] ="8.jpg"
+            vetorImagem[8] = "9.jpg"
+            vetorImagem[9] = "1.jpg"
+            vetorImagem[10] = "2.jpg"
+            vetorImagem[11] = "3.jpg"
+            vetorImagem[12] = "4.jpg"
+            vetorImagem[13] ="5.jpg"
+            vetorImagem[14] = "6.jpg"
+            vetorImagem[15] = "7.jpg"
+            vetorImagem[16] = "8.jpg"
+            vetorImagem[17] = "9.jpg"
+            var quantosClicks = 0;
+        
+        
+        var $imagem1, $imagem2;
+        var acertos = 0;
+        var pontos = 0;
+
+        $("img").click(function(){
+           
+            if(!$(this).hasClass("block"))
+            {
+                var id = $(this).parent().attr('id'); 
+                if(quantosClicks == 0)
+                {
+                    $(this).attr("src", vetorImagem[(parseInt(id) - 1)]);
+                    $imagem1 = $(this);
+                
+                    quantosClicks++;
+                }
+                else
+                {
+                    $(this).attr("src", vetorImagem[(parseInt(id) - 1)]);
+                    $imagem2 = $(this);
+                    var tempo = setInterval(function(){
+                    
+                    if ($imagem1.attr("src") == $imagem2.attr("src"))
+                    {
+                        $imagem1.addClass("block");
+                        $imagem2.addClass("block");
+                        acertos = acertos + 1;
+                        pontos += 20;
+
+                    }
+                    else
+                    {
+                        
+                        $imagem1.attr("src", "capa.jpg");
+                        $imagem2.attr("src", "capa.jpg");
+                        pontos -= 10;
+                    }
+                    quantosClicks = 0;
+                    clearInterval(tempo);
+                    }, 1000);
+             }
+
+             
+            }
+         });
+
+      $(document).ready(function()
+      {
+        vetorImagem = shuffleArray(vetorImagem);
+      
+      });
+      
+       /**
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
+}
+        </script>
+    </body>
+</html>
